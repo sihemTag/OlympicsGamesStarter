@@ -12,6 +12,7 @@ export class OlympicService {
 
   constructor(private http: HttpClient) {}
 
+  //Charger et émettre les données depuis le fichier JSON via le BehaviorSubject
   loadInitialData() {
     return this.http.get<any>(this.olympicUrl).pipe(
       tap((value) => this.olympics$.next(value)),
@@ -25,6 +26,7 @@ export class OlympicService {
     );
   }
 
+  //Méthode pour s'abonner au BehaviorSubject
   getOlympics() {
     return this.olympics$.asObservable();
   }
