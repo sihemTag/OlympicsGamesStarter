@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CountryDetailsComponent } from './pages/country-details/country-details.component';
+import { InfoJOComponent } from './pages/info-jo/info-jo.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,9 @@ const routes: Routes = [
   },
   {
     path:'country/:name', component: CountryDetailsComponent,
+  },
+  {
+    path: 'infoJO', component: InfoJOComponent,
   },
   {
     path: '**', component: NotFoundComponent,

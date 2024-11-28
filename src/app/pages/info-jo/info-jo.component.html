@@ -1,0 +1,18 @@
+<div class="Title">
+    <h2>Medals per country</h2>
+</div>
+<div class="container">
+    <div class="box">
+        <p>Number of JOs</p>
+    </div>
+    <div class="box">
+        <p>Number of countries</p>
+        <p>{{ (olympics$ | async)?.length }}</p>
+    </div>
+</div>
+
+<app-pie-chart></app-pie-chart>
+
+
+
+
