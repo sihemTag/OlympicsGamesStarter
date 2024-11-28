@@ -17,7 +17,8 @@
 .container{
     display: flex;
     gap: 20px;
-    padding-left: 35%;
+    padding-left: 25%;
+    margin-bottom: 40px;
 }
 .box{
     background-color: white; 
@@ -32,4 +33,9 @@
     color: gray;
     font-family: Arial, Helvetica, sans-serif;
 }
+.dynamic-text {
+    font-weight: bold;
+    color: black;
+  }
+  
 
