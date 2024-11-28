@@ -1,0 +1,28 @@
+<div class="Title">
+    <h2>{{countryName}}</h2>
+</div>
+<div class="container">
+    <div class="box">
+        <p>Number of entries</p>
+        <p [ngClass]="{'dynamic-text': nbEntries !== null}">{{ nbEntries }}</p>
+    </div>
+    <div class="box">
+        <p>Total number medals</p>
+        <p [ngClass]="{'dynamic-text': nbMedals !== null}">{{nbMedals}}</p>
+    </div>
+    <div class="box">
+        <p>Total number of athletes</p>
+        <p [ngClass]="{'dynamic-text': nbAthletes !== null}">{{nbAthletes}}</p>
+    </div>
+</div>
+
+<div style="display: block; margin-top: 50px; width: 1000px; height: 1000px; margin: auto;">
+    <canvas baseChart
+      [datasets]="lineChartData.datasets"
+      [labels]="lineChartData.labels"
+      [type]="lineChartType"
+      [options]="lineChartOptions"
+      >
+    </canvas>
+  </div>
+  

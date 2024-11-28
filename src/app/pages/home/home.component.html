@@ -1,27 +1,18 @@
-<div class="Title">
-    <h2>Medals per country</h2>
-</div>
-<div class="container">
-    <div class="box">
-        <p>Number of JOs</p>
-    </div>
-    <div class="box">
-        <p>Number of countries</p>
-        <p>{{ (olympics$ | async)?.length }}</p>
-    </div>
+<img src="assets/images/téléSport.jpg" />
 
-</div>
-<hr />
-
-<div style="display: block; width: 450px; height: 450px; margin: auto; margin-top: 30px;">
-    <canvas
-      baseChart
-      [data]="pieChartData"
-      [labels]="pieChartLabels"
-      [type]="pieChartType"
-      [options]="pieChartOptions"
-      >
-    </canvas>
+<div class="titre">
+    <h1>Bienvenue sur le Dashboard des Jeux Olympiques !</h1>
 </div>
 
 
+<div class="texte">
+    <p>Nous sommes ravis de vous accueillir sur cette plateforme dédiée à l'analyse des performances des nations lors des précédents 
+        Jeux Olympiques. Grâce à ce dashboard interactif, vous pouvez explorer les résultats des compétitions passées, découvrir le
+        nombre de médailles remportées par chaque pays, comparer les performances et plonger dans les statistiques de ces événements
+        emblématiques.
+    </p>
+
+</div>
+
+
+<button (click)="getInformation()">Get information</button>
