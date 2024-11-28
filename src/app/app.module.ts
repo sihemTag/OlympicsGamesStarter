@@ -7,10 +7,12 @@ import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PieChartComponent } from './pages/pie-chart/pie-chart.component';
 import { InfoJOComponent } from './pages/info-jo/info-jo.component';
+import { CountryDetailsComponent } from './pages/country-details/country-details.component';
+import { LineChartComponent } from './pages/line-chart/line-chart.component';
 
 @NgModule({
-  declarations: [AppComponent,HomeComponent, NotFoundComponent, InfoJOComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, PieChartComponent],
+  declarations: [AppComponent,HomeComponent, NotFoundComponent, InfoJOComponent, CountryDetailsComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, PieChartComponent, LineChartComponent],
   providers: [],
   bootstrap: [AppComponent],
 })
