@@ -11,15 +11,15 @@
 <div class="container">
     <div class="box">
         <p>Number of entries</p>
-        <p [ngClass]="{'dynamic-text': nbEntries !== null}">{{ nbEntries }}</p>
+        <p [ngClass]="{'dynamic-text': stats?.nbEntries !== null}">{{ stats?.nbEntries }}</p>
     </div>
     <div class="box">
         <p>Total number medals</p>
-        <p [ngClass]="{'dynamic-text': nbMedals !== null}">{{nbMedals}}</p>
+        <p [ngClass]="{'dynamic-text': stats?.nbMedals !== null}">{{stats?.nbMedals}}</p>
     </div>
     <div class="box">
         <p>Total number of athletes</p>
-        <p [ngClass]="{'dynamic-text': nbAthletes !== null}">{{nbAthletes}}</p>
+        <p [ngClass]="{'dynamic-text': stats?.nbAthletes !== null}">{{stats?.nbAthletes}}</p>
     </div>
 </div>
 

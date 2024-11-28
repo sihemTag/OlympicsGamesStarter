@@ -14,8 +14,9 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
 export class CountryDetailsComponent implements OnInit{
   countryName: string | null = null;
   olympics$: Observable<Olympic[]|null> = of(null);
+  stats: Stats |null = null;
 
-  constructor(private route: ActivatedRoute, private olympicService: OlympicService, private router: Router, private stats: Stats) {}
+  constructor(private route: ActivatedRoute, private olympicService: OlympicService, private router: Router) {}
 
   ngOnInit(): void {
     this.countryName = this.route.snapshot.paramMap.get('name');
@@ -32,9 +33,11 @@ export class CountryDetailsComponent implements OnInit{
       ailleurs. utiliser peut etre les opérateurs de Rxjs*/
     data.map((country: Olympic)=> {
       if(country.country == this.countryName) {
-        this.stats.nbEntries = country.participations.length;
-        this.stats.nbMedals = country.participations.reduce((total: number, participation: Participation) => total + participation.medalsCount, 0);
-        this.stats.nbAthletes = country.participations.reduce((total: number, participation: Participation) => total + participation.athleteCount, 0);
+        if(this.stats){
+          this.stats.nbEntries = country.participations.length;
+          this.stats.nbMedals = country.participations.reduce((total: number, participation: Participation) => total + participation.medalsCount, 0);
+          this.stats.nbAthletes = country.participations.reduce((total: number, participation: Participation) => total + participation.athleteCount, 0);
+        }
       } 
     }); 
   }
