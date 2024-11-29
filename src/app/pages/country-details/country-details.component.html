@@ -11,17 +11,18 @@
 <div class="container">
     <div class="box">
         <p>Number of entries</p>
-        <p [ngClass]="{'dynamic-text': stats?.nbEntries !== null}">{{ stats?.nbEntries }}</p>
+        <p [ngClass]="{'dynamic-text': stats.nbEntries !== null}">{{ stats.nbEntries }}</p>
     </div>
     <div class="box">
         <p>Total number medals</p>
-        <p [ngClass]="{'dynamic-text': stats?.nbMedals !== null}">{{stats?.nbMedals}}</p>
+        <p [ngClass]="{'dynamic-text': stats.nbMedals !== null}">{{stats.nbMedals}}</p>
     </div>
     <div class="box">
         <p>Total number of athletes</p>
-        <p [ngClass]="{'dynamic-text': stats?.nbAthletes !== null}">{{stats?.nbAthletes}}</p>
+        <p [ngClass]="{'dynamic-text': stats.nbAthletes !== null}">{{stats.nbAthletes}}</p>
     </div>
 </div>
 
 <app-line-chart [countryName] = "countryName"></app-line-chart>
   
+<app-footer></app-footer>

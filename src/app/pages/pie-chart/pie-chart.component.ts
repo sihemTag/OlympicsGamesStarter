@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { from, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartData, Chart, registerables, ChartOptions, ChartEvent, ActiveElement } from 'chart.js';
@@ -18,21 +18,20 @@ Chart.register(...registerables, ChartDataLabels);
   styleUrl: './pie-chart.component.scss'
 })
 export class PieChartComponent implements OnInit {
-  public olympics$: Observable<Olympic[] | null> = of(null);
-  public pieChartLabels: string[] = [];  //pays
-  public pieChartType: 'pie' = 'pie';
-  public pieChartData: ChartData<'pie'> = { 
+   olympics$: Observable<Olympic[] | null> = of(null);
+   pieChartLabels: string[] = [];  //pays
+   pieChartType: 'pie' = 'pie';
+   pieChartData: ChartData<'pie'> = { 
     labels: [],
     datasets: [
       {
         data: [],  // Medal count data
-        backgroundColor : [],
-       // backgroundColor: ['#b30000', '#009999', '#6666ff', '#b3b3ff', '#b33c00'],  
+        backgroundColor : [],  
       }
     ],
   };
 
-  public pieChartOptions: ChartOptions<'pie'> = {
+  pieChartOptions: ChartOptions<'pie'> = {
     responsive: true,
     plugins: {
       datalabels: {
@@ -59,7 +58,7 @@ export class PieChartComponent implements OnInit {
     this.olympics$ = this.olympicService.getOlympics();
     this.olympics$.subscribe((data) => {
       if(data){
-        this.updateChartData(data); // Mettre à jour les données du graphique quand les données sont reçues 
+        this.updateChartData(data); 
       } 
     });
   }
@@ -86,8 +85,6 @@ export class PieChartComponent implements OnInit {
 
   generateUniqueColors(count: number): string[] {
     const colors: Set<string> = new Set();
-  
-    // Générer des couleurs uniques jusqu'à ce qu'on ait atteint le nombre désiré
     while (colors.size < count) {
       const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
       colors.add(randomColor);  

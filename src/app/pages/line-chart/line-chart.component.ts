@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
@@ -17,10 +16,10 @@ Chart.register(...registerables);
 })
 export class LineChartComponent implements OnInit {
   @Input() countryName: string | null = null;
-  public olympics$: Observable<Olympic[]|null> = of(null);
+  olympics$: Observable<Olympic[]|null> = of(null);
 
   // Données pour le graphique
-  public lineChartData: ChartData<'line'> = {
+  lineChartData: ChartData<'line'> = {
     labels: [], // Années des participations
     datasets: [
       {
@@ -32,7 +31,7 @@ export class LineChartComponent implements OnInit {
     ]
   };
 
-  public lineChartOptions: ChartOptions = {
+  lineChartOptions: ChartOptions = {
     responsive: true,
     scales: {
       x: {
@@ -50,7 +49,7 @@ export class LineChartComponent implements OnInit {
     }
   };
 
-  public lineChartType: 'line' = 'line'; 
+  lineChartType: 'line' = 'line'; 
 
   constructor(private olympicService: OlympicService) {}
 
@@ -63,15 +62,10 @@ export class LineChartComponent implements OnInit {
     }) 
   }
 
-  updateLineChart(data:Olympic[]): void{
-     /* mettre tout ça dans une méthode et chercher une autre alternative que maps car là la donnée est transformée mais pas utilisée
-      ailleurs. utiliser peut etre les opérateurs de Rxjs*/ 
-    data.map((country: Olympic)=> {
-      if(country.country == this.countryName) {
-        this.lineChartData.labels = country.participations.map(p => p.year.toString());
-        this.lineChartData.datasets[0].data = country.participations.map(p => p.medalsCount);
-      } 
-    }); 
+  updateLineChart(data:Olympic[]): void{ 
+      data = data.filter((country: Olympic) => country.country == this.countryName);
+      this.lineChartData.labels = data[0].participations.map(p => p.year.toString());
+      this.lineChartData.datasets[0].data = data[0].participations.map(p => p.medalsCount);
   }
 
 }

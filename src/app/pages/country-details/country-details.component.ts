@@ -14,7 +14,7 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
 export class CountryDetailsComponent implements OnInit{
   countryName: string | null = null;
   olympics$: Observable<Olympic[]|null> = of(null);
-  stats: Stats |null = null;
+  stats: Stats = {nbEntries:0, nbMedals:0, nbAthletes:0};
 
   constructor(private route: ActivatedRoute, private olympicService: OlympicService, private router: Router) {}
 
@@ -29,15 +29,11 @@ export class CountryDetailsComponent implements OnInit{
   }
 
   updateStats(data: Olympic[]): void{
-    /* mettre tout ça dans une méthode et chercher une autre alternative que maps car là la donnée est transformée mais pas utilisée
-      ailleurs. utiliser peut etre les opérateurs de Rxjs*/
-    data.map((country: Olympic)=> {
+      data.map((country: Olympic)=> {
       if(country.country == this.countryName) {
-        if(this.stats){
-          this.stats.nbEntries = country.participations.length;
-          this.stats.nbMedals = country.participations.reduce((total: number, participation: Participation) => total + participation.medalsCount, 0);
-          this.stats.nbAthletes = country.participations.reduce((total: number, participation: Participation) => total + participation.athleteCount, 0);
-        }
+        this.stats.nbEntries = country.participations.length;
+        this.stats.nbMedals = country.participations.reduce((total: number, participation: Participation) => total + participation.medalsCount, 0);
+        this.stats.nbAthletes = country.participations.reduce((total: number, participation: Participation) => total + participation.athleteCount, 0);
       } 
     }); 
   }

@@ -9,9 +9,10 @@ import { PieChartComponent } from './pages/pie-chart/pie-chart.component';
 import { InfoJOComponent } from './pages/info-jo/info-jo.component';
 import { CountryDetailsComponent } from './pages/country-details/country-details.component';
 import { LineChartComponent } from './pages/line-chart/line-chart.component';
+import { FooterComponent } from './pages/footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent,HomeComponent, NotFoundComponent, InfoJOComponent, CountryDetailsComponent],
+  declarations: [AppComponent,HomeComponent, NotFoundComponent, InfoJOComponent, CountryDetailsComponent, FooterComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, PieChartComponent, LineChartComponent],
   providers: [],
   bootstrap: [AppComponent],
