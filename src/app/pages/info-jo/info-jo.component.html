@@ -10,10 +10,11 @@
 <div class="container">
     <div class="box">
         <p>Number of JOs</p>
+        <p [ngClass] = "'dynamic-text'"> {{nbJOs}}</p>
     </div>
     <div class="box">
         <p>Number of countries</p>
-        <p>{{ (olympics$ | async)?.length }}</p>
+        <p [ngClass]="'dynamic-text'">{{ (olympics$ | async)?.length }}</p>
     </div>
 </div>
 
