@@ -11,16 +11,11 @@ export class OlympicService {
   private olympicUrl = './assets/mock/olympic.json';
   private olympics$ = new BehaviorSubject<Olympic[] | null>(null);
   private destroy$ = new Subject<void>();
-  //private isLoading = false;
 
   constructor(private http: HttpClient) {}
 
   //Charger et émettre les données depuis le fichier JSON via le BehaviorSubject
   loadInitialData() {
-    /*if(this.isLoading){
-      return of();
-    }
-    this.isLoading = true;*/
     return this.http.get<Olympic[]>(this.olympicUrl).pipe(
       tap((value) => this.olympics$.next(value)),
       takeUntil(this.destroy$),
@@ -29,9 +24,6 @@ export class OlympicService {
         this.olympics$.next(null);
         return of(null);
       }),
-      /*finalize(()=>{
-        this.isLoading = false;
-      })*/
     );
   }
 
