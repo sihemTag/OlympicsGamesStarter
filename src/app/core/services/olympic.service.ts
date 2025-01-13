@@ -31,9 +31,4 @@ export class OlympicService {
   getOlympics() {
     return this.olympics$.asObservable();
   }
-
-  ngOnDestroy() : void{
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
 }

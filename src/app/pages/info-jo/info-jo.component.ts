@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { map, Observable, of, Subject } from 'rxjs';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import {Olympic} from 'src/app/core/models/Olympic';
 import { Router } from '@angular/router';
@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
   templateUrl: './info-jo.component.html',
   styleUrl: './info-jo.component.scss'
 })
-export class InfoJOComponent implements OnInit{
+export class InfoJOComponent implements OnInit, OnDestroy{
 
   public olympics$: Observable<Olympic[] | null> = of(null);
   nbJOs: number = 0;
-
+  private destroy$ = new Subject<void>();
   
   constructor(private olympicService: OlympicService, private router: Router) {}
 
@@ -36,6 +36,11 @@ export class InfoJOComponent implements OnInit{
     const years = olympics.flatMap( o => o.participations.map(p => p.year));
     const uniqueYears = new Set(years);
     return uniqueYears.size;
+  }
+
+  ngOnDestroy() : void{
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

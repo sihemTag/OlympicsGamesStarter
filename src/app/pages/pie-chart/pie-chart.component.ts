@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, of , Subject} from 'rxjs';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartData, Chart, registerables, ChartOptions, ChartEvent, ActiveElement } from 'chart.js';
@@ -17,8 +17,9 @@ Chart.register(...registerables, ChartDataLabels);
   templateUrl: './pie-chart.component.html',
   styleUrl: './pie-chart.component.scss'
 })
-export class PieChartComponent implements OnInit {
+export class PieChartComponent implements OnInit, OnDestroy {
    olympics$: Observable<Olympic[] | null> = of(null);
+   private destroy$ = new Subject<void>();
    pieChartLabels: string[] = [];  //pays
    pieChartType: 'pie' = 'pie';
    pieChartData: ChartData<'pie'> = { 
@@ -92,6 +93,10 @@ export class PieChartComponent implements OnInit {
   
     return Array.from(colors);
   }
-  
+
+  ngOnDestroy() : void{
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
 }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { Participation } from 'src/app/core/models/Participation';
 import { Stats } from 'src/app/core/models/Stats';
@@ -11,10 +11,11 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
   templateUrl: './country-details.component.html',
   styleUrl: './country-details.component.scss',
 })
-export class CountryDetailsComponent implements OnInit{
+export class CountryDetailsComponent implements OnInit, OnDestroy{
   countryName: string | null = null;
   olympics$: Observable<Olympic[]|null> = of(null);
   stats: Stats = {nbEntries:0, nbMedals:0, nbAthletes:0};
+  private destroy$ = new Subject<void>();
 
   constructor(private route: ActivatedRoute, private olympicService: OlympicService, private router: Router) {}
 
@@ -40,6 +41,11 @@ export class CountryDetailsComponent implements OnInit{
 
   goBack(){
     this.router.navigate(['/infoJO']);
+  }
+
+  ngOnDestroy() : void{
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

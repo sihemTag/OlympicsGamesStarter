@@ -54,3 +54,26 @@ button:hover{
     font-weight: bold;
     color: black;
 }
+@media(max-width: 760px){
+    .Title h2{
+        font-size: 12px;
+    }
+    .Title{
+        margin-left: 18px;
+        width: 40%;
+        margin-top: 30px;
+    }
+    .box{
+        font-size: 10px;
+        width: 40%;
+        height: auto;
+    }
+    .container{
+        display: flex;
+        gap: 15px;
+        padding-left: 3%;
+    }
+    button{
+        font-size: 14px;
+    }
+}

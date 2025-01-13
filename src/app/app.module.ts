@@ -10,11 +10,15 @@ import { InfoJOComponent } from './pages/info-jo/info-jo.component';
 import { CountryDetailsComponent } from './pages/country-details/country-details.component';
 import { LineChartComponent } from './pages/line-chart/line-chart.component';
 import { FooterComponent } from './pages/footer/footer.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent,HomeComponent, NotFoundComponent, InfoJOComponent, CountryDetailsComponent, FooterComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, PieChartComponent, LineChartComponent],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, PieChartComponent, LineChartComponent, MatIconModule],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
