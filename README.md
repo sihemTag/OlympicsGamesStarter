@@ -1,5 +1,5 @@
 # OlympicsGamesStarter
-Ce projet a été généré avec Angular CLI version 18.0.5.
+Ce projet a été généré avec Angular CLI version 18.0.5.\
 Installez d'abord les modules `(npm install)`
 
 # Server
